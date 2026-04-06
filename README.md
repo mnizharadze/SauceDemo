@@ -81,12 +81,14 @@ Coverage: login, inventory, cart, checkout, logout, UI validation, edge cases, e
 Format: Excel (/tests/testCases.xlsx)
 Mapping: Each test case maps to a QA Library action or validation function for modularity
 
-Examples:
+Test Cases
 
-ID	Title	QA Library Mapping
-TC01	Valid login	loginAsStandardUser(); validateLoginSuccess()
-TC07	Add single product to cart	addProductToCart('Sauce Labs Backpack'); validateCartCount(1)
-TC16	Complete order successfully	finishCheckout(); validateCheckoutComplete()
+Manual test cases are maintained in Google Sheets to track all positive, negative, and edge scenarios
+The spreadsheet follows the format:
+ID	Title	Precondition	Steps	Test Data	Expected Result	Priority
+
+/QA-library/tests/testCases → contains link to Google Sheets documentation
+
 Installation
 Clone the repository:
 git clone https://github.com/<yourusername>/saucedemo-qa-framework.git
