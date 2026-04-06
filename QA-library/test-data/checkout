@@ -1,0 +1,6 @@
+{
+  "valid": {"first": "John", "last": "Doe", "zip": "12345"},
+  "missing_first": {"first": "", "last": "Doe", "zip": "12345"},
+  "missing_zip": {"first": "John", "last": "Doe", "zip": ""},
+  "empty_data": {"first": "", "last": "", "zip": ""}
+}
