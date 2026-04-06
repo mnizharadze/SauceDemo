@@ -1,4 +1,3 @@
-# SauceDemo
 # SauceDemo QA Automation Framework
 
 ## Overview
