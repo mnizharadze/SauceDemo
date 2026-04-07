@@ -1,121 +1,207 @@
-AI Driven QA Automation – SauceDemo
+# AI Driven QA Automation – SauceDemo
 
+## 🌐 Project Overview
 
-🌐 Project Overview
-
-This project is a complete QA Automation framework for the SauceDemo
- web application. It leverages AI + QA Library approach to create structured, reusable test cases and automate them using Playwright.
+This project is a complete QA Automation framework for the [SauceDemo](https://www.saucedemo.com) web application. It leverages an **AI + QA Library** approach to create structured, reusable test cases and automate them using **Playwright**.
 
 The framework includes:
 
-Modular QA Library with reusable actions and validation helpers
-Test cases aligned with manual documentation
-Automated test execution using Playwright
-Reporting with screenshots, videos, and HTML reports
+- Modular QA Library with reusable actions and validation helpers
+- Test cases aligned with manual documentation
+- Automated test execution using Playwright
+- Reporting with screenshots, videos, and HTML reports
 
+---
 
-🧠 Objective
+## 🧠 Objective
 
 The goal is to build a full QA system that covers:
 
-Test Design (QA Library approach)
-Test Case Documentation (Excel)
-Test Automation (Code + Framework)
-Reporting (HTML reports, screenshots, videos)
+- **Test Design** – QA Library approach with reusable, modular functions
+- **Test Case Documentation** – Structured test cases (TC01–TC25+)
+- **Test Automation** – Playwright-based automated execution
+- **Reporting** – HTML reports, screenshots, and video recordings
 
+---
 
-🗂 Repository Structure
+## 🗂 Repository Structure
 
-node_modules/           # Project dependencies (auto-generated)
-playwright-report/      # Playwright HTML report of last run
-qa-library/             # Reusable actions and validation helpers
-reports/                # Custom test reports folder
-test-results/           # Screenshots and videos per test run
-README.md               # Project documentation
-package.json            # Project config and dependencies
-package-lock.json       # Lock file for npm
-playwright.config.json  # Playwright configuration
+```
+SauceDemo/
+├── playwright-report/        # Latest Playwright HTML report (15/15 passing)
+│   └── index.html
+├── qa-library/               # Core test framework
+│   ├── actions/              # Reusable page action helpers
+│   │   ├── cart.js
+│   │   ├── checkout.js
+│   │   ├── login.js
+│   │   └── products.js
+│   ├── validations/          # Reusable assertion/validation helpers
+│   │   ├── cart.js
+│   │   ├── checkout.js
+│   │   └── productsValidation.js
+│   ├── test-data/            # Test data (JSON)
+│   │   └── products.json
+│   └── tests/                # Test spec files
+│       ├── cart.spec.js
+│       ├── checkout.spec.js
+│       ├── inventory.spec.js
+│       └── login.spec.js
+├── test-results/             # Screenshots and videos per test run
+├── README.md
+├── package.json
+├── package-lock.json
+└── playwright.config.js
+```
 
+---
 
-💻 Technologies
+## 💻 Technologies
 
-Automation Framework: Playwright
-Language: JavaScript
-Test Structure: QA Library, reusable functions, modular design
-Reporting: Playwright HTML Report, screenshots, video recordings
+| Tool | Purpose |
+|------|---------|
+| [Playwright](https://playwright.dev/) | Test automation framework |
+| JavaScript | Language |
+| Node.js | Runtime environment |
+| GitHub | Version control and report hosting |
 
+---
 
+## ⚙️ Installation
 
-⚙️ Installation
-
-Clone the repository:
+**1. Clone the repository:**
+```bash
 git clone https://github.com/mnizharadze/SauceDemo.git
 cd SauceDemo
-Install dependencies:
+```
+
+**2. Install dependencies:**
+```bash
 npm install
-Ensure Playwright browsers are installed:
+```
+
+**3. Install Playwright browsers:**
+```bash
 npx playwright install
+```
 
+---
 
-🧪 Running Tests
+## 🧪 Running Tests
 
-Run all tests:
-
+**Run all tests:**
+```bash
 npx playwright test
+```
 
-Run tests in a specific file:
+**Run a specific test file:**
+```bash
+npx playwright test qa-library/tests/login.spec.js
+```
 
-npx playwright test qa-library/tests/<test-file>.spec.js
-
-Run tests headed (with browser visible):
-
+**Run tests with browser visible:**
+```bash
 npx playwright test --headed
+```
 
+---
 
+## 📊 Test Reporting
 
-📊 Test Reporting
-
-After running tests:
-
-HTML Report:
+**View the HTML report after a test run:**
+```bash
 npx playwright show-report
+```
 
-Located in playwright-report/.
+The report is located in `playwright-report/index.html` and includes:
+- Pass/fail status per test
+- Step-by-step execution details
+- Screenshots on failure
+- Video recordings for all tests
 
-Screenshots & Videos:
-Screenshots of failures and videos for all tests are saved in test-results/.
-Each test has a folder with media attached for debugging.
-Custom Reports:
-reports/ folder can be used for any aggregated reports you generate.
-🛠 QA Library
+---
 
-Reusable functions and actions are located in qa-library/. Example functions:
+## 🛠 QA Library
 
-loginAsStandardUser(page) – logs in a standard user
-addProductToCart(page, productName) – adds a product to the cart
-validateCartCount(page, expectedCount) – validates cart item count
-startCheckout(page) / fillCheckoutForm(page, firstName, lastName, postalCode) – checkout helpers
+All reusable logic lives in `qa-library/`. The framework is split into **actions** (what to do) and **validations** (what to assert).
 
-All test scripts in qa-library/tests/ use these functions to ensure modularity and reusability.
+**Example actions:**
+```javascript
+loginAsStandardUser(page)                             // Login with standard_user
+addProductToCart(page, productName)                   // Add a product from inventory
+addProductToCartFromDetail(page)                      // Add a product from detail page
+removeProductFromCart(page, productName)              // Remove a product from cart
+sortProducts(page, sortOption)                        // Sort product listing
+startCheckout(page)                                   // Proceed to checkout
+fillCheckoutForm(page, firstName, lastName, postalCode) // Fill checkout form
+```
 
+**Example validations:**
+```javascript
+validateProductCount(page, expectedCount)             // Assert number of products
+validateCartCount(page, expectedCount)                // Assert cart badge count
+validateProductDetails(page, name, description)       // Assert product detail page
+validateOrderConfirmation(page)                       // Assert checkout completion
+```
 
-📋 Test Cases
+---
 
-Test cases are structured according to QA Library actions
-Covers positive, negative, and edge cases
-Minimum of 20–30 test cases, all aligned with the framework
-🔗 GitHub Integration
-Push your local changes:
+## 📋 Test Cases
+
+| ID | Area | Description |
+|----|------|-------------|
+| TC01 | Login | Valid login with standard_user |
+| TC02 | Login | Invalid password shows error |
+| TC03 | Login | Locked user shows error |
+| TC04 | Login | Empty username shows error |
+| TC05 | Login | Empty password shows error |
+| TC06 | Login | Both fields empty shows error |
+| TC07 | Logout | Logout from inventory page |
+| TC08 | Inventory | Product listing shows 6 products |
+| TC09 | Inventory | View product details for Sauce Labs Backpack |
+| TC10 | Inventory | Add item from detail page increments cart count |
+| TC11 | Inventory | Sort products by price low to high |
+| TC12 | Inventory | Sort products by name A–Z |
+| TC13 | Inventory | Add single product increments cart badge to 1 |
+| TC14 | Inventory | Add two products increments cart badge to 2 |
+| TC15 | Inventory | Remove product decreases cart count |
+| TC16 | Cart | Cart displays added product |
+| TC17 | Cart | Cart displays correct product price |
+| TC18 | Cart | Remove item from cart page |
+| TC19 | Cart | Continue shopping returns to inventory |
+| TC20 | Cart | Proceed to checkout from cart |
+| TC21 | Checkout | Fill checkout form and continue |
+| TC22 | Checkout | Empty first name shows error |
+| TC23 | Checkout | Empty last name shows error |
+| TC24 | Checkout | Empty postal code shows error |
+| TC25 | Checkout | Complete checkout shows confirmation |
+
+**Latest run: ✅ 15/15 tests passing**
+
+---
+
+## 🔗 Git Workflow
+
+**Push local changes:**
+```bash
 git add .
-git commit -m "Update project"
+git commit -m "Your message"
 git push origin main
-If remote changes exist:
-git pull origin main
-git push -f origin main
+```
 
+**If remote has changes:**
+```bash
+git stash
+git pull origin main --rebase
+git stash pop
+git push origin main
+```
 
-📌 Notes
+---
 
-Always check playwright-report/ and test-results/ for test results
-Use --headed mode if you need to watch tests in real-time
-Keep node_modules/ ignored if sharing repository publicly
+## 📌 Notes
+
+- `playwright-report/` always contains the latest test run report
+- `test-results/` contains per-test screenshots and videos for debugging
+- Use `--headed` mode to watch tests run in real time
+- `node_modules/` is excluded from the repository via `.gitignore`
