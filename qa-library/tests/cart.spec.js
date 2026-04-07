@@ -1,7 +1,7 @@
 const { test } = require('@playwright/test');
-const { loginAsStandardUser } = require('../qa-library/actions/login');
-const { addProductToCart, removeProductFromCart } = require('../qa-library/actions/cart');
-const { validateCartCount } = require('../qa-library/validations/cart');
+const { loginAsStandardUser } = require('../actions/login');
+const { addProductToCart, removeProductFromCart } = require('../actions/cart');
+const { validateCartCount } = require('../validations/cart');
 
 test('TC10 - Add item to cart', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');

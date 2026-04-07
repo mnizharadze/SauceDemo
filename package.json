@@ -1,0 +1,24 @@
+{
+  "name": "saucedemo",
+  "version": "1.0.0",
+  "description": "This project is a **modular QA Automation framework** for the [SauceDemo](https://www.saucedemo.com) web application.  \r It follows a **QA Library approach** to ensure reusable test steps, validations, and test data abstraction.  \r The framework supports automated testing of core user flows including **login, inventory, cart, checkout, and logout**, while maintaining modularity and reusability.",
+  "main": "playwright.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnizharadze/SauceDemo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mnizharadze/SauceDemo/issues"
+  },
+  "homepage": "https://github.com/mnizharadze/SauceDemo#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.59.1"
+  }
+}

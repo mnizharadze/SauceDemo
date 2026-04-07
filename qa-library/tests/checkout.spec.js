@@ -1,8 +1,8 @@
 const { test } = require('@playwright/test');
-const { loginAsStandardUser } = require('../qa-library/actions/login');
-const { addProductToCart } = require('../qa-library/actions/cart');
-const { startCheckout, fillCheckoutForm, finishCheckout } = require('../qa-library/actions/checkout');
-const { validateOrderComplete } = require('../qa-library/validations/checkout');
+const { loginAsStandardUser } = require('../actions/login');
+const { addProductToCart } = require('../actions/cart');
+const { startCheckout, fillCheckoutForm, finishCheckout } = require('../actions/checkout');
+const { validateOrderComplete } = require('../validations/checkout');
 
 test('TC25 - Complete checkout', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');

@@ -7,14 +7,12 @@ const {
   addProductToCart,
   removeProductFromCart,
   sortProducts
-} = require('../QA-library/Actions/products');
-
+} = require('../actions/products');
 const {
   validateProductCount,
   validateProductDetails,
   validateCartCount
-} = require('../QA-library/validations/productsValidation');
-
+} = require('../validations/productsValidation');
 const products = require('../test-data/products.json');
 
 test.beforeEach(async ({ page }) => {

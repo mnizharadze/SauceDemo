@@ -1,6 +1,6 @@
 const { test } = require('@playwright/test');
-const { loginAsStandardUser, loginWithCredentials, loginAsLockedUser } = require('../qa-library/actions/login');
-const { validateLoginSuccess, validateLoginError } = require('../qa-library/validations/login');
+const { loginAsStandardUser, loginWithCredentials, loginAsLockedUser } = require('../actions/login');
+const { validateLoginSuccess, validateLoginError } = require('../validations/login');
 
 test('TC01 - Valid login', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');

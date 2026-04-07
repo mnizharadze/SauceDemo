@@ -1,5 +1,5 @@
 const { test } = require('@playwright/test');
-const { loginAsStandardUser } = require('../qa-library/actions/login');
+const { loginAsStandardUser } = require('../actions/login');
 
 test('Logout from inventory page', async ({ page }) => {
   await page.goto('https://www.saucedemo.com/');
