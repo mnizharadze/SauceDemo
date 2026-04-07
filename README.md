@@ -28,7 +28,9 @@ The goal is to build a full QA system that covers:
 
 ```
 SauceDemo/
-├── playwright-report/        # Latest Playwright HTML report (15/15 passing)
+├── playwright-report/        # Playwright HTML report (hosted via GitHub Pages)
+│   ├── data/
+│   ├── trace/
 │   └── index.html
 ├── qa-library/               # Core test framework
 │   ├── actions/              # Reusable page action helpers
@@ -36,18 +38,23 @@ SauceDemo/
 │   │   ├── checkout.js
 │   │   ├── login.js
 │   │   └── products.js
-│   ├── validations/          # Reusable assertion/validation helpers
+│   ├── validations/          # Reusable validation helpers
 │   │   ├── cart.js
 │   │   ├── checkout.js
+│   │   ├── login.js
 │   │   └── productsValidation.js
 │   ├── test-data/            # Test data (JSON)
-│   │   └── products.json
+│   │   ├── checkout.json
+│   │   ├── products.json
+│   │   └── users.json
 │   └── tests/                # Test spec files
 │       ├── cart.spec.js
 │       ├── checkout.spec.js
 │       ├── inventory.spec.js
-│       └── login.spec.js
-├── test-results/             # Screenshots and videos per test run
+│       ├── login.spec.js
+│       └── logout.spec.js
+├── reports/                  # Additional report storage
+     ├── test-results/             # Screenshots and videos per test run
 ├── README.md
 ├── package.json
 ├── package-lock.json
