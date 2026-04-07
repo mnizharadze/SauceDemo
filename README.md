@@ -1,55 +1,121 @@
-SauceDemo AI Driven QA Automation
-🌐 Platform
+AI Driven QA Automation – SauceDemo
 
-SauceDemo Web Application
-https://www.saucedemo.com/
 
-🧠 Project Goal
-Implement AI + QA Library approach
-Create structured Test Cases
-Build Automation Framework
-Ensure Manual ↔ Automation synchronization
-Generate Reports for test execution
-📦 Project Structure
-/qa-library       → reusable actions, validations, helper functions
-/reports          → Playwright HTML reports
-/test-results     → screenshots & videos of failed tests
-/playwright.config.js → Playwright configuration
-/package.json     → project dependencies
-/README.md        → project documentation
-🔹 QA Library
-loginAsStandardUser(page)
-addProductToCart(page, productName)
-validateCartCount(page, expectedCount)
-startCheckout(page)
-Modular, reusable test steps
-🔹 Test Cases
-Stored in TestCases.xlsx
-Covers Positive, Negative, Edge cases
-Each test case mapped to automation script
-🔹 Automation
-Playwright + JavaScript
-Page Object Model (POM)
-Integration with QA Library
-Test data abstracted in code
-🔹 Reporting
-Passed / Failed statuses
-Error details
-Screenshots & videos of failed tests
-HTML report viewable via:
-npx playwright show-report
-🔹 Installation
+🌐 Project Overview
+
+This project is a complete QA Automation framework for the SauceDemo
+ web application. It leverages AI + QA Library approach to create structured, reusable test cases and automate them using Playwright.
+
+The framework includes:
+
+Modular QA Library with reusable actions and validation helpers
+Test cases aligned with manual documentation
+Automated test execution using Playwright
+Reporting with screenshots, videos, and HTML reports
+
+
+🧠 Objective
+
+The goal is to build a full QA system that covers:
+
+Test Design (QA Library approach)
+Test Case Documentation (Excel)
+Test Automation (Code + Framework)
+Reporting (HTML reports, screenshots, videos)
+
+
+🗂 Repository Structure
+
+node_modules/           # Project dependencies (auto-generated)
+playwright-report/      # Playwright HTML report of last run
+qa-library/             # Reusable actions and validation helpers
+reports/                # Custom test reports folder
+test-results/           # Screenshots and videos per test run
+README.md               # Project documentation
+package.json            # Project config and dependencies
+package-lock.json       # Lock file for npm
+playwright.config.json  # Playwright configuration
+
+
+💻 Technologies
+
+Automation Framework: Playwright
+Language: JavaScript
+Test Structure: QA Library, reusable functions, modular design
+Reporting: Playwright HTML Report, screenshots, video recordings
+
+
+
+⚙️ Installation
+
+Clone the repository:
 git clone https://github.com/mnizharadze/SauceDemo.git
 cd SauceDemo
+Install dependencies:
 npm install
-🔹 Running Tests
-npx playwright test      # Run all tests
-npx playwright test <file>  # Run a specific test file
-🔹 Viewing Reports
+Ensure Playwright browsers are installed:
+npx playwright install
+
+
+🧪 Running Tests
+
+Run all tests:
+
+npx playwright test
+
+Run tests in a specific file:
+
+npx playwright test qa-library/tests/<test-file>.spec.js
+
+Run tests headed (with browser visible):
+
+npx playwright test --headed
+
+
+
+📊 Test Reporting
+
+After running tests:
+
+HTML Report:
 npx playwright show-report
-🔹 GitHub Organization
-/qa-library → reusable functions
-/tests → test scripts
-/test-data → manual test cases, input data
-/reports → Playwright HTML reports
-/test-results → screenshots & videos
+
+Located in playwright-report/.
+
+Screenshots & Videos:
+Screenshots of failures and videos for all tests are saved in test-results/.
+Each test has a folder with media attached for debugging.
+Custom Reports:
+reports/ folder can be used for any aggregated reports you generate.
+🛠 QA Library
+
+Reusable functions and actions are located in qa-library/. Example functions:
+
+loginAsStandardUser(page) – logs in a standard user
+addProductToCart(page, productName) – adds a product to the cart
+validateCartCount(page, expectedCount) – validates cart item count
+startCheckout(page) / fillCheckoutForm(page, firstName, lastName, postalCode) – checkout helpers
+
+All test scripts in qa-library/tests/ use these functions to ensure modularity and reusability.
+
+
+📋 Test Cases
+
+Test cases are structured according to QA Library actions
+Covers positive, negative, and edge cases
+Minimum of 20–30 test cases, all aligned with the framework
+🔗 GitHub Integration
+Push your local changes:
+git add .
+git commit -m "Update project"
+git push origin main
+If remote changes exist:
+git pull origin main
+git push -f origin main
+
+
+📌 Notes
+
+Always check playwright-report/ and test-results/ for test results
+Use --headed mode if you need to watch tests in real-time
+Keep node_modules/ ignored if sharing repository publicly
