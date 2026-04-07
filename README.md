@@ -1,134 +1,145 @@
-# SauceDemo QA Automation Framework
+# SauceDemo QA Automation Project
 
-## Overview
-This project is a **modular QA Automation framework** for the [SauceDemo](https://www.saucedemo.com) web application.  
-It follows a **QA Library approach** to ensure reusable test steps, validations, and test data abstraction.  
-The framework supports automated testing of core user flows including **login, inventory, cart, checkout, and logout**, while maintaining modularity and reusability.
+## 📘 Project Overview
+This project is a **full QA automation framework** for the [SauceDemo](https://www.saucedemo.com/) web application.  
+It leverages **AI-driven QA Library** methodology, modular test cases, and Playwright automation to cover all critical user flows.
 
-The framework also integrates **manual test case documentation**, allowing **manual ↔ automated synchronization**.
+**Main goals:**
+- Design structured and reusable Test Cases
+- Implement an automated testing framework
+- Synchronize manual and automated tests
+- Generate detailed test reports
 
 ---
 
-## Folder Structure
+## 🌐 Platform
+- **Application under test:** SauceDemo (https://www.saucedemo.com/)
+- **Browsers supported:** Chromium, Firefox, WebKit
+- **Test runner:** Playwright Test
+
+---
+
+## 🧠 Project Objectives
+- Reusable QA Library with **actions** and **validation helpers**
+- Full coverage of critical user flows:
+  - Login
+  - Inventory (Products)
+  - Cart
+  - Checkout (Step 1, Step 2, Complete)
+  - Logout
+- Automated reporting with screenshots and video recordings
+
+---
+
+## 📦 Project Structure
+
+
 /qa-library
-/actions → reusable functions for login, cart, checkout, navigation
-/validations → validation helpers for login, cart, checkout, UI
-/test-data → JSON files for users, checkout scenarios
-/tests → automated test scripts
-/reports → HTML and screenshot reports from test runs
-/tests/testCases.xlsx → documented manual test cases mapped to QA Library functions
-README.md → project overview and instructions
+/actions # Reusable test actions (login, cart, checkout)
+/validations # Validation helpers (assertions, checks)
+/tests # Test scripts
+/test-data # Test input data
+/reports # Playwright test reports (screenshots, videos, HTML reports)
+/pages # Optional: Page Object Model (POM) files
+README.md
+playwright.config.js
+package.json
 
 
 ---
 
-## QA Library Overview
+## 🔹 QA Library Highlights
+Example reusable actions:
 
-### Actions
-Reusable functions for performing operations on the web app:
+```javascript
+// login
+loginAsStandardUser(page);
 
-- `loginAsStandardUser()` → logs in as standard_user  
-- `loginAsLockedUser()` → logs in as locked_out_user  
-- `loginWithCredentials(userKey, passwordOverride)` → generic login function  
-- `addProductToCart(productName)` → adds a product to the cart  
-- `removeProductFromCart(productName)` → removes a product from the cart  
-- `goToCart()` → navigates to the cart page  
-- `continueShopping()` → returns to inventory from cart  
-- `startCheckout()` → starts checkout from cart  
-- `fillCheckoutForm(data)` → fills checkout step 1 form using JSON test data  
-- `finishCheckout()` → completes the checkout process  
-- `logout()` → logs out the current user  
-- `refreshPage()` → refreshes the current page  
+// cart
+addProductToCart(productName);
+validateCartCount(expectedCount);
 
-### Validations
-Reusable functions to **verify expected outcomes**:
+// checkout
+startCheckout(page);
+fillCheckoutForm(page, firstName, lastName, postalCode);
+completeCheckout(page);
+Purpose: Make test scripts modular, readable, and maintainable.
+🔹 Test Case Documentation
+Format: Excel (.xlsx)
+Minimum 20–30 test cases
+Columns: ID | Title | Preconditions | Steps | Test Data | Expected Result | Priority
+Includes:
+Positive scenarios
+Negative scenarios
+Edge cases
+Linked to QA Library actions
+🔹 Automation Implementation
+Framework: Playwright + JavaScript
+Architecture: Page Object Model (POM) + QA Library
+Features:
+Headless / headed mode
+Screenshots on failure
+Video recording for failed tests (optional for all tests)
+Modular and reusable code
+Test data abstraction
 
-- `validateLoginSuccess(page)` → verifies successful login  
-- `validateLoginError(message)` → verifies login error messages  
-- `validateCartCount(expectedCount)` → verifies number of items in cart badge  
-- `validateCartItems(products)` → verifies correct items are in cart  
-- `validateOrderSummary(products, total)` → verifies checkout step 2 summary  
-- `validateCheckoutComplete()` → verifies order completion message  
-- `validateRedirect(url)` → verifies navigation to correct page  
-- `validateUIElements()` → verifies all critical UI elements are present  
-- `validateImageAltText()` → ensures all images have alt attributes for accessibility  
+Sample configuration (playwright.config.js):
 
-### Test Data
-JSON files for modular and reusable data:
+/** @type {import('@playwright/test').PlaywrightTestConfig} */
+const config = {
+  testDir: './qa-library/tests',
+  timeout: 60000,
+  expect: { timeout: 10000 },
+  reporter: [['html', { open: 'never' }]],
+  use: {
+    headless: false,
+    viewport: { width: 1280, height: 720 },
+    actionTimeout: 20000,
+    navigationTimeout: 30000,
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure', // change to 'on' to record all tests
+  },
+};
 
-- **users.json** → all SauceDemo users:
-
-```json
-{
-  "standard": {"username": "standard_user", "password": "secret_sauce"},
-  "locked": {"username": "locked_out_user", "password": "secret_sauce"},
-  "problem": {"username": "problem_user", "password": "secret_sauce"},
-  "performance": {"username": "performance_glitch_user", "password": "secret_sauce"},
-  "error": {"username": "error_user", "password": "secret_sauce"},
-  "visual": {"username": "visual_user", "password": "secret_sauce"}
-}
-
-checkout.json → checkout form variations:
-{
-  "valid": {"first": "John", "last": "Doe", "zip": "12345"},
-  "missing_first": {"first": "", "last": "Doe", "zip": "12345"},
-  "missing_zip": {"first": "John", "last": "Doe", "zip": ""},
-  "empty_data": {"first": "", "last": "", "zip": ""}
-}
-Test Cases
-Total: 33 test cases
-Coverage: login, inventory, cart, checkout, logout, UI validation, edge cases, error handling
-Format: Excel (/tests/testCases.xlsx)
-Mapping: Each test case maps to a QA Library action or validation function for modularity
-
-Test Cases
-
-Manual test cases are maintained in Google Sheets to track all positive, negative, and edge scenarios
-The spreadsheet follows the format:
-ID	Title	Precondition	Steps	Test Data	Expected Result	Priority
-
-/QA-library/tests/testCases → contains link to Google Sheets documentation
-
-Installation
-Clone the repository:
-git clone https://github.com/<yourusername>/saucedemo-qa-framework.git
-cd saucedemo-qa-framework
-Install Node.js (v16+ recommended)
+module.exports = config;
+🔹 Running Tests
 Install dependencies:
-npm init -y
-npm install -D @playwright/test
-npx playwright install
-Running Tests
-To run all tests:
+npm install
+Run all tests:
 npx playwright test
-To run a specific test file:
-npx playwright test tests/login.spec.js
-To generate HTML report:
+Run a specific test:
+npx playwright test qa-library/tests/login.spec.js
+🔹 Reporting
+Playwright automatically generates:
+HTML report
+Screenshots for failed tests
+Video recordings for failed tests
+Open HTML report:
 npx playwright show-report
-Screenshots of failed tests are saved automatically in /reports/screenshots.
-Best Practices
-All test scripts must call QA Library functions; no hardcoded selectors in test scripts.
-Test data should be maintained in /qa-library/test-data for reusability.
-Manual ↔ Automation sync: always update Excel test cases when automation changes.
-GitHub Repository
+Video files are located in:
+test-results/<test-name>/video.webm
+Play videos in a browser or VLC Media Player.
+🔹 GitHub Repository
 
-Structure suggestion:
+Repository structure:
 
-main/
-├─ qa-library/
-├─ tests/
-├─ reports/
-├─ README.md
-Push all changes after every major update
-Optional: create a automation branch for Playwright scripts before merging to main
-Optional Enhancements (Bonus)
-CI/CD using GitHub Actions to run tests on push
+node_modules/
+playwright-report/
+qa-library/
+reports/
+test-results/
+README.md
+package-lock.json
+package.json
+playwright.config.json
+
+Instructions to push updates:
+
+git add .
+git commit -m "Add automation framework and tests"
+git push -f origin main
+🔹 Bonus Features (Optional)
+CI/CD integration (GitHub Actions)
 Parallel test execution
 Cross-browser testing
-Data-driven testing with additional JSON files
-References
-SauceDemo
-Playwright Official Docs
-
-Author: Mariam Nizharadze
-Date: 2026-04-06
+Data-driven testing
