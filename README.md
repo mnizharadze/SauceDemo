@@ -1,4 +1,5 @@
 AI Driven QA Automation – SauceDemo
+
 🌐 Project Overview
 
 This project is a complete QA Automation framework for the SauceDemo
